@@ -28,7 +28,7 @@ func NewFSVenuesClient(id, secret string) FSClient {
 }
 
 func (c *FSClient) GetVenues(params map[string]string) (interface{}, error) {
-	return c.dispatchRequest(params, "/search/")
+	return c.dispatchRequest(params, "search?")
 }
 
 func (c *FSClient) GetCategories(params map[string]string) (interface{}, error) {
