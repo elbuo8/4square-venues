@@ -55,6 +55,12 @@ func (c *FSClient) dispatchRequest(params map[string]string, endpoint string) (i
 	values.Set("v", c.v)
 	reqUrl.WriteString(values.Encode())
 	r, e := c.Client.Get(reqUrl.String())
+	if e != nil {
+		return nil, e
+	}
+	if r == nil {
+		return nil, fmt.Errorf("venues.go: response is nil")
+	}
 	defer r.Body.Close()
 	body, _ := ioutil.ReadAll(r.Body)
 	if r.StatusCode >= 200 && r.StatusCode <= 400 && e == nil {
